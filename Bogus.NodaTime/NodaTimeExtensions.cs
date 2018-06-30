@@ -1,4 +1,4 @@
-﻿using Bogus.NodaTime;
+using Bogus.NodaTime;
 using Bogus.Premium;
 
 namespace Bogus
