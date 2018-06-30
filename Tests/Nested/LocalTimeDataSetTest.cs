@@ -98,10 +98,10 @@ public class LocalTimeDataSetTest : SeededTest
     public void Time_that_will_happen_soon()
     {
         var start = Now();
-        dataSet.Soon(3)
+        dataSet.Soon(2)
             .Should()
             .BeGreaterThan(start)
-            .And.BeLessThan(start.PlusHours(3));
+            .And.BeLessThan(start.PlusHours(2));
     }
 
     LocalTime Now()
