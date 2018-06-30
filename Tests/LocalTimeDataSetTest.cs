@@ -3,21 +3,21 @@ using FluentAssertions;
 using NodaTime;
 using Xunit;
 
-public class LocalDateTimeDataSetTest : SeededTest
+public class LocalTimeDataSetTest : SeededTest
 {
-    public LocalDateTimeDataSetTest()
+    public LocalTimeDataSetTest()
     {
-        dataSet = new LocalDateTimeDataSet(()=> DateTimeZone.Utc);
+        dataSet = new LocalTimeDataSet(()=> DateTimeZone.Utc);
     }
 
-    LocalDateTimeDataSet dataSet;
+    LocalTimeDataSet dataSet;
 
     [Fact]
     public void can_get_date_in_future()
     {
-           var starting = new LocalDateTime(2015,6,6,4,17,41);
+           var starting = new LocalTime(4,17,41);
         dataSet.Future(reference: starting).Should()
-            .BeLessOrEqualTo(starting.Plus(Period.FromDays(100)))
+            .BeLessOrEqualTo(starting.PlusHours(10))
             .And
             .BeGreaterOrEqualTo(starting);
     }
@@ -25,9 +25,9 @@ public class LocalDateTimeDataSetTest : SeededTest
     [Fact]
     public void can_get_date_in_future_with_options()
     {
-        var starting = new LocalDateTime(2015, 6, 6, 4, 17, 41);
-        dataSet.Future(reference: starting, daysToGoForward: 500).Should()
-            .BeLessOrEqualTo(starting.Plus(Period.FromDays(500)))
+        var starting = new LocalTime(4, 17, 41);
+        dataSet.Future(reference: starting, hoursToGoForward: 2).Should()
+            .BeLessOrEqualTo(starting.PlusHours(2))
             .And
             .BeGreaterOrEqualTo(starting);
     }
@@ -35,11 +35,11 @@ public class LocalDateTimeDataSetTest : SeededTest
     [Fact]
     public void can_get_date_in_past()
     {
-        var starting = new LocalDateTime(2015, 6, 6, 4, 17, 41);
+        var starting = new LocalTime(14, 17, 41);
         dataSet.Past(reference: starting).Should()
             .BeLessOrEqualTo(starting)
             .And
-            .BeGreaterOrEqualTo(starting.Minus(Period.FromDays(100)));
+            .BeGreaterOrEqualTo(starting.PlusHours(-10));
     }
 
     [Fact]
@@ -49,17 +49,17 @@ public class LocalDateTimeDataSetTest : SeededTest
         dataSet.Recent(0).Should()
             .BeLessOrEqualTo(now)
             .And
-            .BeGreaterOrEqualTo(now.Minus(Period.FromDays(1)));
+            .BeGreaterOrEqualTo(now.PlusHours(-1));
     }
 
     [Fact]
     public void can_get_date_in_past_with_custom_options()
     {
-        var starting = new LocalDateTime(2015, 6, 6, 4, 17, 41);
-        dataSet.Past(reference: starting, daysToGoBack: 500).Should()
+        var starting = new LocalTime(4, 17, 41);
+        dataSet.Past(reference: starting, hoursToGoBack: 1).Should()
             .BeLessOrEqualTo(starting)
             .And
-            .BeGreaterOrEqualTo(starting.Minus(Period.FromDays(500)));
+            .BeGreaterOrEqualTo(starting.PlusHours(-1));
     }
 
     [Fact]
@@ -70,15 +70,15 @@ public class LocalDateTimeDataSetTest : SeededTest
             .Should()
             .BeLessOrEqualTo(start)
             .And
-            .BeGreaterOrEqualTo(start.Minus(Period.FromDays(10)));
+            .BeGreaterOrEqualTo(start.PlusHours(-1));
     }
 
 
     [Fact]
     public void can_get_random_time_between_two_dates()
     {
-        var start= new LocalDateTime(2015, 6, 6, 4, 17, 41);
-        var end = new LocalDateTime(2015, 6, 8, 4, 17, 41);
+        var start= new LocalTime(4, 17, 41);
+        var end = new LocalTime( 5, 17, 41);
 
         dataSet.Between(start, end)
             .Should()
@@ -101,12 +101,12 @@ public class LocalDateTimeDataSetTest : SeededTest
         dataSet.Soon(3)
             .Should()
             .BeGreaterThan(start)
-            .And.BeLessThan(start.Plus(Period.FromDays(3)));
+            .And.BeLessThan(start.PlusHours(3));
     }
 
-    LocalDateTime Now()
+    LocalTime Now()
     {
         var currentInstant = SystemClock.Instance.GetCurrentInstant();
-        return currentInstant.InUtc().LocalDateTime;
+        return currentInstant.InUtc().TimeOfDay;
     }
 }
