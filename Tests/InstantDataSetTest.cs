@@ -13,7 +13,7 @@ public class InstantDataSetTest : SeededTest
     InstantDataSet dataSet;
 
     [Fact]
-    public void can_get_date_in_future()
+    public void Future()
     {
         var starting = Instant.FromUtc(2015,6,6,4,17,41);
         dataSet.Future(reference: starting).Should()
@@ -23,7 +23,7 @@ public class InstantDataSetTest : SeededTest
     }
 
     [Fact]
-    public void can_get_date_in_future_with_options()
+    public void Future_with_options()
     {
         var starting = Instant.FromUtc(2015, 6, 6, 4, 17, 41);
         dataSet.Future(reference: starting, daysToGoForward: 500).Should()
@@ -33,7 +33,7 @@ public class InstantDataSetTest : SeededTest
     }
 
     [Fact]
-    public void can_get_date_in_past()
+    public void Past()
     {
         var starting = Instant.FromUtc(2015, 6, 6, 4, 17, 41);
         dataSet.Past(reference: starting).Should()
@@ -43,7 +43,7 @@ public class InstantDataSetTest : SeededTest
     }
 
     [Fact]
-    public void can_get_date_in_past_0_days_results_in_random_time()
+    public void Past_0_days_results_in_Random_time()
     {
         var now = SystemClock.Instance.GetCurrentInstant();
         dataSet.Recent(0).Should()
@@ -53,7 +53,7 @@ public class InstantDataSetTest : SeededTest
     }
 
     [Fact]
-    public void can_get_date_in_past_with_custom_options()
+    public void Past_with_custom_options()
     {
         var starting = Instant.FromUtc(2015, 6, 6, 4, 17, 41);
         dataSet.Past(reference: starting, daysToGoBack: 500).Should()
@@ -63,7 +63,7 @@ public class InstantDataSetTest : SeededTest
     }
 
     [Fact]
-    public void can_get_date_recently()
+    public void Recently()
     {
         var start = SystemClock.Instance.GetCurrentInstant();
         dataSet.Recent()
@@ -75,7 +75,7 @@ public class InstantDataSetTest : SeededTest
 
 
     [Fact]
-    public void can_get_random_time_between_two_dates()
+    public void Random_time_between_two_dates()
     {
         var start= Instant.FromUtc(2015, 6, 6, 4, 17, 41);
         var end = Instant.FromUtc(2015, 7, 6, 4, 17, 41);
@@ -95,7 +95,7 @@ public class InstantDataSetTest : SeededTest
     }
 
     [Fact]
-    public void get_a_date_time_that_will_happen_soon()
+    public void Time_that_will_happen_soon()
     {
         var start = SystemClock.Instance.GetCurrentInstant();
         dataSet.Soon(3)
