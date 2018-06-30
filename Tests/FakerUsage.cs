@@ -17,17 +17,20 @@ public class FakerUsage
     public void Run()
     {
         var faker = new Faker<Target>()
-            .RuleFor(u => u.Property1, (f, u) => f.Noda().Instant.Recent())
-            .RuleFor(u => u.Property2, (f, u) => f.Noda().ZonedDateTime.Future());
+            .RuleFor(u => u.Property1, (f, u) => f.Noda().Duration())
+            .RuleFor(u => u.Property2, (f, u) => f.Noda().Instant.Recent())
+            .RuleFor(u => u.Property3, (f, u) => f.Noda().ZonedDateTime.Future());
 
         var target = faker.Generate();
         Debug.WriteLine(target.Property1);
         Debug.WriteLine(target.Property2);
+        Debug.WriteLine(target.Property3);
     }
 
     public class Target
     {
-        public Instant Property1 { get; set; }
-        public ZonedDateTime Property2 { get; set; }
+        public Duration Property1 { get; set; }
+        public Instant Property2 { get; set; }
+        public ZonedDateTime Property3 { get; set; }
     }
 }

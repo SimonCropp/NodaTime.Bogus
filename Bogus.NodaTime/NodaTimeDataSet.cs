@@ -14,12 +14,39 @@ namespace Bogus.NodaTime
         public LocalTimeDataSet LocalTime { get; }
         public ZonedDateTimeDataSet ZonedDateTime { get; }
 
-        public NodaTimeDataSet() : this(() => global::NodaTime.DateTimeZone.Utc)
+        public static Func<NodaTimeDataSet, DateTimeZone> DateTimeZoneBuilder
+        {
+            get => dateTimeZoneBuilder;
+            set
+            {
+                Guard.AgainstNull(value, nameof(value));
+                dateTimeZoneBuilder = value;
+            }
+        }
+
+        static Func<NodaTimeDataSet, DateTimeZone> dateTimeZoneBuilder = set => set.DateTimeZone();
+
+        public static void AlwaysUseDtcDateTimeZone()
+        {
+            dateTimeZoneBuilder = x => global::NodaTime.DateTimeZone.Utc;
+        }
+
+        public static void AlwaysUseSystemDefaultDateTimeZone()
+        {
+            dateTimeZoneBuilder = x => DateTimeZoneProviders.Tzdb.GetSystemDefault();
+        }
+
+        public NodaTimeDataSet() : this(null)
         {
         }
 
         public NodaTimeDataSet(Func<DateTimeZone> dateTimeZoneBuilder)
         {
+            if (dateTimeZoneBuilder == null)
+            {
+                dateTimeZoneBuilder = () => NodaTimeDataSet.dateTimeZoneBuilder(this);
+            }
+
             Instant = new InstantDataSet
             {
                 Random = Random

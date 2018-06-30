@@ -1,44 +1,46 @@
-# NaughtyStrings
+# Bogus.NodaTime
 
-Provides a strong typed .NET API for the [big-list-of-naughty-strings](https://github.com/minimaxir/big-list-of-naughty-strings)
-
-
-
-## NaughtyStrings  [![NuGet Status](http://img.shields.io/nuget/v/NaughtyStrings.svg?style=flat)](https://www.nuget.org/packages/NaughtyStrings/)
-
-https://nuget.org/packages/NaughtyStrings/
-
-    PM> Install-Package NaughtyStrings
+Add support for [NodaTime](https://nodatime.org/) to [Bogus](https://github.com/bchavez/Bogus).
 
 
-### Usage
+## NuGet [![NuGet Status](http://img.shields.io/nuget/v/Bogus.NodaTime.svg?style=flat)](https://www.nuget.org/packages/Bogus.NodaTime/)
 
-The entry type is a static class `TheNaughtyStrings`. It exposes all strings via `TheNaughtyStrings.All` and individual categories by name:
+https://nuget.org/packages/Bogus.NodaTime/
 
-```csharp
-var items = TheNaughtyStrings.All.Take(10);
-var emoji = TheNaughtyStrings.Emoji.Take(10);
+    PM> Install-Package Bogus.NodaTime
+
+
+## Usage
+
+
+This project extends `Faker` with `.Noda()`.
+
 ```
-
-
-### Usage
-
-
-The entry extension method is `Naughty()`. It exposes all strings via `.String()` and individual categories by name:
-
-```csharp
 var faker = new Faker<Target>()
-    .RuleFor(u => u.Property1, (f, u) => f.Naughty().String())
-    .RuleFor(u => u.Property2, (f, u) => f.Naughty().Emoji());
-
-var target = faker.Generate();
-Debug.WriteLine(target.Property1);
-Debug.WriteLine(target.Property2);
+    .RuleFor(u => u.Property1, (f, u) => f.Noda().Duration())
+    .RuleFor(u => u.Property2, (f, u) => f.Noda().Instant.Recent())
+    .RuleFor(u => u.Property3, (f, u) => f.Noda().ZonedDateTime.Future());
 ```
 
+There are several top level generators:
 
+ * `CalendarSystem()`: Creates a random [CalendarSystem](https://nodatime.org/unstable/api/NodaTime.CalendarSystem.html).
+ * `DateTimeZone()`: Creates a random [DateTimeZone](https://nodatime.org/unstable/api/NodaTime.DateTimeZone.html).
+ * `Duration()`: Creates a random [Duration](https://nodatime.org/unstable/api/NodaTime.Duration.html).
+ * `IsoDayOfWeek()`:  Creates a random [IsoDayOfWeek](https://nodatime.org/unstable/api/NodaTime.IsoDayOfWeek.html).
+ * `Offset()`:  Creates a random [Offset](https://nodatime.org/unstable/api/NodaTime.Offset.html).
+ * `Period()`:  Creates a random [Period](https://nodatime.org/unstable/api/NodaTime.Period.html).
+ * `PeriodUnits()`:  Creates a random [PeriodUnits](https://nodatime.org/unstable/api/NodaTime.PeriodUnits.html).
+
+There are several nested generators that provide `Past`, `Soon`, `Future`, `Between`, and `Recent` semantics:
+
+ * `.Instant`: Generators for [Instant](https://nodatime.org/unstable/api/NodaTime.Instant.html)
+ * `.LocalDate`: Generators for [LocalDate](https://nodatime.org/unstable/api/NodaTime.LocalDate.html)
+ * `.LocalDateTime`: Generators for [LocalDateTime](https://nodatime.org/unstable/api/NodaTime.LocalDateTime.html)
+ * `.LocalTime`: Generators for [LocalTime](https://nodatime.org/unstable/api/NodaTime.LocalTime.html)
+ * `.ZonedDateTime`: Generators for [ZonedDateTime](https://nodatime.org/unstable/api/NodaTime.ZonedDateTime.html)
 
 
 ## Icon
 
-<a href="https://thenounproject.com/term/naughty/1777956/" target="_blank">Naughty</a> designed by <a href="https://thenounproject.com/AomAm/" target="_blank">AomAm</a> from The Noun Project
+<a href="https://thenounproject.com/term/calendar/689871/" target="_blank">Calendar</a> designed by <a href="https://thenounproject.com/monstercritic/" target="_blank">Monster Critic</a> from The Noun Project
