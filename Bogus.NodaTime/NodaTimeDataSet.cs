@@ -21,13 +21,13 @@ namespace Bogus.NodaTime
         public Period Period(Period maximum = null)
         {
             Period span;
-            if (maximum != null)
+            if (maximum == null)
             {
-                span = maximum;
+                span = global::NodaTime.Period.FromDays(7);
             }
             else
             {
-                span = global::NodaTime.Period.FromDays(7);
+                span = maximum;
             }
 
             var partTimeSpanTicks = Random.Double() * span.ToDuration().TotalTicks;
@@ -41,13 +41,13 @@ namespace Bogus.NodaTime
         public Duration Duration(Duration? maximum = null)
         {
             Duration span;
-            if (maximum != null)
+            if (maximum == null)
             {
-                span = maximum.Value;
+                span = global::NodaTime.Duration.FromDays(7);
             }
             else
             {
-                span = global::NodaTime.Duration.FromDays(7);
+                span = maximum.Value;
             }
 
             var partTimeSpanTicks = Random.Double() * span.TotalTicks;
