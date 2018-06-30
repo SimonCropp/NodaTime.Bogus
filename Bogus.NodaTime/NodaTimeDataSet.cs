@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using NodaTime;
 
 namespace Bogus.NodaTime
 {
     public class NodaTimeDataSet : DataSet
     {
+        List<string> calendarIds = global::NodaTime.CalendarSystem.Ids.ToList();
         public InstantDataSet Instant { get; }
 
         public NodaTimeDataSet()
@@ -13,6 +16,15 @@ namespace Bogus.NodaTime
             {
                 Random = Random
             };
+        }
+
+        /// <summary>
+        /// Get a random <see cref="CalendarSystem"/>.
+        /// </summary>
+        public CalendarSystem CalendarSystem()
+        {
+            var id = Random.ListItem(calendarIds);
+            return global::NodaTime.CalendarSystem.ForId(id);
         }
 
         /// <summary>
