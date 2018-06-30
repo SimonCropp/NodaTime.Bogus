@@ -1,13 +1,13 @@
-# Bogus.NodaTime
+# NodaTime.Bogus
 
 Add support for [NodaTime](https://nodatime.org/) to [Bogus](https://github.com/bchavez/Bogus).
 
 
-## NuGet [![NuGet Status](http://img.shields.io/nuget/v/Bogus.NodaTime.svg?style=flat)](https://www.nuget.org/packages/Bogus.NodaTime/)
+## NuGet [![NuGet Status](http://img.shields.io/nuget/v/NodaTime.Bogus.svg?style=flat)](https://www.nuget.org/packages/NodaTime.Bogus/)
 
-https://nuget.org/packages/Bogus.NodaTime/
+https://nuget.org/packages/NodaTime.Bogus/
 
-    PM> Install-Package Bogus.NodaTime
+    PM> Install-Package NodaTime.Bogus
 
 
 ## Usage

@@ -11,6 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bogus.NodaTime\Bogus.NodaTime.csproj" />
+    <ProjectReference Include="..\NodaTime.Bogus\NodaTime.Bogus.csproj" />
   </ItemGroup>
 </Project>
