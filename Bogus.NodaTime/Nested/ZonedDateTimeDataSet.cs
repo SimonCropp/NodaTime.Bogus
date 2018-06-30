@@ -8,11 +8,11 @@ namespace Bogus.NodaTime
     /// </summary>
     public class ZonedDateTimeDataSet : DataSet
     {
-        Func<DateTimeZone> defaultDateTimeZone;
+        Func<DateTimeZone> dateTimeZoneBuilder;
 
-        public ZonedDateTimeDataSet(Func<DateTimeZone> defaultDateTimeZone)
+        public ZonedDateTimeDataSet(Func<DateTimeZone> dateTimeZoneBuilder)
         {
-            this.defaultDateTimeZone = defaultDateTimeZone;
+            this.dateTimeZoneBuilder = dateTimeZoneBuilder;
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Bogus.NodaTime
         ZonedDateTime Now()
         {
             var currentInstant = SystemClock.Instance.GetCurrentInstant();
-            return new ZonedDateTime(currentInstant, defaultDateTimeZone());
+            return new ZonedDateTime(currentInstant, dateTimeZoneBuilder());
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Bogus.NodaTime
             var partTicks = Random.Double() * totalTicks;
 
             var part = Duration.FromTicks(partTicks);
-            return new ZonedDateTime(currentInstant - part, defaultDateTimeZone());
+            return new ZonedDateTime(currentInstant - part, dateTimeZoneBuilder());
         }
     }
 }

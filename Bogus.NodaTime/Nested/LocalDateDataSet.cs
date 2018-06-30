@@ -8,11 +8,11 @@ namespace Bogus.NodaTime
     /// </summary>
     public class LocalDateDataSet : DataSet
     {
-        Func<DateTimeZone> defaultDateTimeZone;
+        Func<DateTimeZone> dateTimeZoneBuilder;
 
-        public LocalDateDataSet(Func<DateTimeZone> defaultDateTimeZone)
+        public LocalDateDataSet(Func<DateTimeZone> dateTimeZoneBuilder)
         {
-            this.defaultDateTimeZone = defaultDateTimeZone;
+            this.dateTimeZoneBuilder = dateTimeZoneBuilder;
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Bogus.NodaTime
         LocalDate Now()
         {
             var currentInstant = SystemClock.Instance.GetCurrentInstant();
-            return currentInstant.InZone(defaultDateTimeZone()).Date;
+            return currentInstant.InZone(dateTimeZoneBuilder()).Date;
         }
 
         /// <summary>

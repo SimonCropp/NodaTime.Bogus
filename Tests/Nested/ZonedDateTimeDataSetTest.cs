@@ -1,4 +1,5 @@
-﻿using Bogus.NodaTime;
+﻿using System;
+using Bogus.NodaTime;
 using FluentAssertions;
 using NodaTime;
 using Xunit;
@@ -49,7 +50,7 @@ public class ZonedDateTimeDataSetTest : SeededTest
     {
         var now = SystemClock.Instance.GetCurrentInstant();
         dataSet.Recent(0).ToDateTimeUtc().Should()
-            .BeOnOrBefore(now.ToDateTimeUtc())
+            .BeOnOrBefore(DateTime.UtcNow)
             .And
             .BeOnOrAfter(now.Minus(Duration.FromDays(1)).ToDateTimeUtc());
     }

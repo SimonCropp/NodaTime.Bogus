@@ -9,13 +9,54 @@ namespace Bogus.NodaTime
     {
         List<string> calendarIds = global::NodaTime.CalendarSystem.Ids.ToList();
         public InstantDataSet Instant { get; }
+        public LocalDateDataSet LocalDate { get; }
+        public LocalDateTimeDataSet LocalDateTime { get; }
+        public LocalTimeDataSet LocalTime { get; }
+        public ZonedDateTimeDataSet ZonedDateTime { get; }
 
-        public NodaTimeDataSet()
+        public NodaTimeDataSet() : this(() => global::NodaTime.DateTimeZone.Utc)
+        {
+        }
+
+        public NodaTimeDataSet(Func<DateTimeZone> dateTimeZoneBuilder)
         {
             Instant = new InstantDataSet
             {
                 Random = Random
             };
+            LocalDate = new LocalDateDataSet(dateTimeZoneBuilder)
+            {
+                Random = Random
+            };
+            LocalDateTime = new LocalDateTimeDataSet(dateTimeZoneBuilder)
+            {
+                Random = Random
+            };
+            LocalTime = new LocalTimeDataSet(dateTimeZoneBuilder)
+            {
+                Random = Random
+            };
+            ZonedDateTime = new ZonedDateTimeDataSet(dateTimeZoneBuilder)
+            {
+                Random = Random
+            };
+        }
+
+        /// <summary>
+        /// Get a random <see cref="Offset"/>.
+        /// </summary>
+        public Offset Offset()
+        {
+            var offset = Random.Long(global::NodaTime.Offset.MinValue.Ticks, global::NodaTime.Offset.MaxValue.Ticks);
+            return global::NodaTime.Offset.FromTicks(offset);
+        }
+
+        /// <summary>
+        /// Get a random <see cref="DateTimeZone"/>.
+        /// </summary>
+        public DateTimeZone DateTimeZone()
+        {
+            return global::NodaTime.DateTimeZone.ForOffset(Offset());
         }
 
         /// <summary>
@@ -25,6 +66,22 @@ namespace Bogus.NodaTime
         {
             var id = Random.ListItem(calendarIds);
             return global::NodaTime.CalendarSystem.ForId(id);
+        }
+
+        /// <summary>
+        /// Get a random <see cref="PeriodUnits"/>.
+        /// </summary>
+        public PeriodUnits PeriodUnits()
+        {
+            return Random.Enum<PeriodUnits>();
+        }
+
+        /// <summary>
+        /// Get a random <see cref="IsoDayOfWeek"/>.
+        /// </summary>
+        public IsoDayOfWeek IsoDayOfWeek()
+        {
+            return Random.Enum<IsoDayOfWeek>();
         }
 
         /// <summary>
