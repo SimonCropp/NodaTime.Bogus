@@ -63,7 +63,7 @@ public class LocalDateTimeDataSetTest : SeededTest
     }
 
     [Fact]
-    public void can_get_date_recently_within_the_year()
+    public void can_get_date_recently()
     {
         var start = Now();
         dataSet.Recent()
