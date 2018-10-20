@@ -49,7 +49,7 @@ public class LocalTimeDataSetTest : SeededTest
         dataSet.Recent(0).Should()
             .BeLessOrEqualTo(now)
             .And
-            .BeGreaterOrEqualTo(now.PlusHours(-1));
+            .BeGreaterOrEqualTo(now.PlusMinutes(-59));
     }
 
     [Fact]

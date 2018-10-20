@@ -15,7 +15,7 @@ public class SeededTest
 
     protected static void ResetGlobalSeed()
     {
-        Randomizer.Seed = new System.Random(3116);
+        Randomizer.Seed = new Random(3116);
     }
 
     protected IEnumerable<T> Make<T>(int times, Func<T> a)
