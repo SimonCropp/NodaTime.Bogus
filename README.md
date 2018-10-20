@@ -17,7 +17,7 @@ https://nuget.org/packages/NodaTime.Bogus/
 
 This project extends `Faker` with `.Noda()`.
 
-```
+```csharp
 var faker = new Faker<Target>()
     .RuleFor(u => u.Property1, (f, u) => f.Noda().Duration())
     .RuleFor(u => u.Property2, (f, u) => f.Noda().Instant.Recent())
