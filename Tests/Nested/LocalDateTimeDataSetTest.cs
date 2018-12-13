@@ -46,7 +46,7 @@ public class LocalDateTimeDataSetTest : SeededTest
     public void Past_0_days_results_in_Random_time()
     {
         var now = Now();
-        dataSet.Recent(0).Should()
+        dataSet.Past(0).Should()
             .BeLessOrEqualTo(now.Plus(Period.FromSeconds(1)))
             .And
             .BeGreaterOrEqualTo(now.Minus(Period.FromDays(1)));
