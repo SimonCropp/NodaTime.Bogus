@@ -2,17 +2,9 @@
 using Bogus;
 using NodaTime;
 using Xunit;
-using Xunit.Abstractions;
 
 public class FakerUsage
 {
-    ITestOutputHelper output;
-
-    public FakerUsage(ITestOutputHelper output)
-    {
-        this.output = output;
-    }
-
     [Fact]
     public void Run()
     {
