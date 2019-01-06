@@ -10,7 +10,7 @@
     <PackageTags>NodaTime, Bogus</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/SimonCropp/Bogus.NodaTime/master/icon.png</PackageIconUrl>
     <PackageProjectUrl>http://github.com/SimonCropp/Bogus.NodaTime</PackageProjectUrl>
-    <PackageOutputPath>..\nugets</PackageOutputPath>
+    <PackageOutputPath>..\..\nugets</PackageOutputPath>
     <Description>Add support for NodaTime https://nodatime.org/ to Bogus https://github.com/bchavez/Bogus</Description>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <DebugType>embedded</DebugType>
