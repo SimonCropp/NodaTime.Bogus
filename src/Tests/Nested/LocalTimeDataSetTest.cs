@@ -45,8 +45,9 @@ public class LocalTimeDataSetTest : SeededTest
     [Fact]
     public void Past_0_days_results_in_Random_time()
     {
+        var localTime = dataSet.Past(0);
         var now = Now();
-        dataSet.Past(0).Should()
+        localTime.Should()
             .BeLessOrEqualTo(now)
             .And
             .BeGreaterOrEqualTo(now.PlusMinutes(-59));
@@ -65,8 +66,9 @@ public class LocalTimeDataSetTest : SeededTest
     [Fact]
     public void Recently()
     {
+        var localTime = dataSet.Recent();
         var start = Now();
-        dataSet.Recent()
+        localTime
             .Should()
             .BeLessOrEqualTo(start)
             .And

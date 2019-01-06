@@ -45,8 +45,9 @@ public class InstantDataSetTest : SeededTest
     [Fact]
     public void Past_0_days_results_in_Random_time()
     {
+        var instant = dataSet.Past(0);
         var now = SystemClock.Instance.GetCurrentInstant();
-        dataSet.Past(0).Should()
+        instant.Should()
             .BeLessOrEqualTo(now)
             .And
             .BeGreaterOrEqualTo(now.Minus(Duration.FromDays(1)));
