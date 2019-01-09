@@ -1,4 +1,5 @@
-﻿using Bogus.NodaTime;
+﻿using System;
+using Bogus.NodaTime;
 using NodaTime;
 using Xunit;
 using Xunit.Abstractions;
@@ -26,6 +27,7 @@ public class NodaTimeDataSetTest
     public void Duration()
     {
         output.WriteLine("AAAAA");
+        Console.WriteLine("AAAAA");
         var duration = dataSet.Duration();
         Assert.NotEqual(default, duration);
     }
