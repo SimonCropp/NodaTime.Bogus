@@ -1,8 +1,8 @@
 version: 1.0.{build}
 image: Visual Studio 2017
 build_script:
-- cmd:
-  dotnet build src --configuration Release
-  dotnet test src --configuration Release --no-build --verbosity diag
+- ps: >-
+    dotnet build src --configuration Release
+    dotnet test src --configuration Release --no-build --verbosity diag
 artifacts:
 - path: nugets\**\*.nupkg
