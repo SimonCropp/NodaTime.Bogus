@@ -16,20 +16,7 @@ https://nuget.org/packages/NodaTime.Bogus/
 
 This project extends `Faker` with `.Noda()`.
 
-<!-- snippet: usage -->
-```cs
-var faker = new Faker<Target>()
-    .RuleFor(u => u.Property1, (f, u) => f.Noda().Duration())
-    .RuleFor(u => u.Property2, (f, u) => f.Noda().Instant.Recent())
-    .RuleFor(u => u.Property3, (f, u) => f.Noda().ZonedDateTime.Future());
-
-var target = faker.Generate();
-Debug.WriteLine(target.Property1);
-Debug.WriteLine(target.Property2);
-Debug.WriteLine(target.Property3);
-```
-<sup>[snippet source](/src/Tests/FakerUsage.cs#L11-L21)</sup>
-<!-- endsnippet -->
+snippet: usage
 
 There are several top level generators:
 

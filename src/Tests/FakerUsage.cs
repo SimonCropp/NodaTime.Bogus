@@ -8,6 +8,7 @@ public class FakerUsage
     [Fact]
     public void Run()
     {
+        #region usage
         var faker = new Faker<Target>()
             .RuleFor(u => u.Property1, (f, u) => f.Noda().Duration())
             .RuleFor(u => u.Property2, (f, u) => f.Noda().Instant.Recent())
@@ -17,6 +18,7 @@ public class FakerUsage
         Debug.WriteLine(target.Property1);
         Debug.WriteLine(target.Property2);
         Debug.WriteLine(target.Property3);
+        #endregion
     }
 
     public class Target
