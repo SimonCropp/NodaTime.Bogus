@@ -2,8 +2,6 @@
 
 Add support for [NodaTime](https://nodatime.org/) to [Bogus](https://github.com/bchavez/Bogus).
 
-**This project is supported by the community via [Patreon sponsorship](https://www.patreon.com/join/simoncropp). If you are using this project to deliver business value or build commercial software it is expected that you will provide support [via Patreon](https://www.patreon.com/join/simoncropp).**
-
 
 ## NuGet [![NuGet Status](http://img.shields.io/nuget/v/NodaTime.Bogus.svg?style=flat)](https://www.nuget.org/packages/NodaTime.Bogus/)
 
