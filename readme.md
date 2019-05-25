@@ -9,7 +9,7 @@ To change this file edit the source file and then re-run the generation using ei
 Add support for [NodaTime](https://nodatime.org/) to [Bogus](https://github.com/bchavez/Bogus).
 
 
-## NuGet [![NuGet Status](http://img.shields.io/nuget/v/NodaTime.Bogus.svg?style=flat)](https://www.nuget.org/packages/NodaTime.Bogus/)
+## NuGet [![NuGet Status](http://img.shields.io/nuget/v/NodaTime.Bogus.svg)](https://www.nuget.org/packages/NodaTime.Bogus/)
 
 https://nuget.org/packages/NodaTime.Bogus/
 
