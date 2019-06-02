@@ -1,14 +1,11 @@
 ﻿using Bogus.NodaTime;
 using NodaTime;
 using Xunit;
+using Xunit.Abstractions;
 
-public class NodaTimeDataSetTest
+public class NodaTimeDataSetTest :
+    XunitLoggingBase
 {
-    public NodaTimeDataSetTest()
-    {
-        dataSet = new NodaTimeDataSet(() => DateTimeZone.Utc);
-    }
-
     NodaTimeDataSet dataSet;
 
     [Fact]
@@ -30,5 +27,10 @@ public class NodaTimeDataSetTest
     {
         var calendarSystem = dataSet.CalendarSystem();
         Assert.NotNull(calendarSystem);
+    }
+
+    public NodaTimeDataSetTest(ITestOutputHelper output) : base(output)
+    {
+        dataSet = new NodaTimeDataSet(() => DateTimeZone.Utc);
     }
 }

@@ -2,10 +2,13 @@
 using FluentAssertions;
 using NodaTime;
 using Xunit;
+using Xunit.Abstractions;
 
-public class LocalTimeDataSetTest : SeededTest
+public class LocalTimeDataSetTest :
+    SeededTest
 {
-    public LocalTimeDataSetTest()
+    public LocalTimeDataSetTest(ITestOutputHelper output) :
+        base(output)
     {
         dataSet = new LocalTimeDataSet(()=> DateTimeZone.Utc);
     }

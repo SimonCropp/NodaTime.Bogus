@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Bogus;
 using Xunit;
+using Xunit.Abstractions;
 
 [Collection("Seeded Test")]
-public class SeededTest
+public class SeededTest :
+    XunitLoggingBase
 {
-    public SeededTest()
-    {
-        //set the random gen manually to a seeded value
-        ResetGlobalSeed();
-    }
-
     protected static void ResetGlobalSeed()
     {
         Randomizer.Seed = new Random(3116);
@@ -22,5 +18,11 @@ public class SeededTest
     {
         return Enumerable.Range(0, times)
             .Select(i => a()).ToArray();
+    }
+
+    public SeededTest(ITestOutputHelper output) : base(output)
+    {
+        //set the random gen manually to a seeded value
+        ResetGlobalSeed();
     }
 }

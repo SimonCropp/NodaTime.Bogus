@@ -2,10 +2,13 @@
 using FluentAssertions;
 using NodaTime;
 using Xunit;
+using Xunit.Abstractions;
 
-public class InstantDataSetTest : SeededTest
+public class InstantDataSetTest :
+    SeededTest
 {
-    public InstantDataSetTest()
+    public InstantDataSetTest(ITestOutputHelper output) :
+        base(output)
     {
         dataSet = new InstantDataSet();
     }
