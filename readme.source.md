@@ -7,8 +7,6 @@ Add support for [NodaTime](https://nodatime.org/) to [Bogus](https://github.com/
 
 https://nuget.org/packages/NodaTime.Bogus/
 
-    PM> Install-Package NodaTime.Bogus
-
 
 ## Usage
 
@@ -37,4 +35,4 @@ There are several nested generators that provide `Past`, `Soon`, `Future`, `Betw
 
 ## Icon
 
-<a href="https://thenounproject.com/term/calendar/689871/" target="_blank">Calendar</a> designed by <a href="https://thenounproject.com/monstercritic/" target="_blank">Monster Critic</a> from The Noun Project
+[Calendar](https://thenounproject.com/term/calendar/689871/) designed by [Monster Critic](https://thenounproject.com/monstercritic/) from [The Noun Project](https://thenounproject.com/monstercritic/).
