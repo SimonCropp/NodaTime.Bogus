@@ -5,12 +5,15 @@ Source File: /readme.source.md
 To change this file edit the source file and then run MarkdownSnippets.
 -->
 
-# NodaTime.Bogus
+# <img src="/src/icon.png" height="30px"> NodaTime.Bogus
+
+[![Build status](https://ci.appveyor.com/api/projects/status/5if48t86ivcnrits/branch/master?svg=true)](https://ci.appveyor.com/project/SimonCropp/NodaTime-Bogus)
+[![NuGet Status](https://img.shields.io/nuget/v/NodaTime.Bogus.svg?cacheSeconds=86400)](https://www.nuget.org/packages/NodaTime.Bogus/)
 
 Add support for [NodaTime](https://nodatime.org/) to [Bogus](https://github.com/bchavez/Bogus).
 
 
-## NuGet [![NuGet Status](http://img.shields.io/nuget/v/NodaTime.Bogus.svg)](https://www.nuget.org/packages/NodaTime.Bogus/)
+## NuGet
 
 https://nuget.org/packages/NodaTime.Bogus/
 
@@ -52,6 +55,11 @@ There are several nested generators that provide `Past`, `Soon`, `Future`, `Betw
  * `.LocalDateTime`: Generators for [LocalDateTime](https://nodatime.org/unstable/api/NodaTime.LocalDateTime.html)
  * `.LocalTime`: Generators for [LocalTime](https://nodatime.org/unstable/api/NodaTime.LocalTime.html)
  * `.ZonedDateTime`: Generators for [ZonedDateTime](https://nodatime.org/unstable/api/NodaTime.ZonedDateTime.html)
+
+
+## Release Notes
+
+See [closed milestones](../../milestones?state=closed).
 
 
 ## Icon
