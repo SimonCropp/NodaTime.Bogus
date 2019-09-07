@@ -7,7 +7,7 @@ using Xunit.Abstractions;
 
 [Collection("Seeded Test")]
 public class SeededTest :
-    XunitLoggingBase
+    XunitApprovalBase
 {
     protected static void ResetGlobalSeed()
     {
