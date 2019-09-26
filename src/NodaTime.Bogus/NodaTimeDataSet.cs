@@ -5,7 +5,8 @@ using NodaTime;
 
 namespace Bogus.NodaTime
 {
-    public class NodaTimeDataSet : DataSet
+    public class NodaTimeDataSet :
+        DataSet
     {
         List<string> calendarIds = global::NodaTime.CalendarSystem.Ids.ToList();
         public InstantDataSet Instant { get; }
@@ -40,7 +41,7 @@ namespace Bogus.NodaTime
         {
         }
 
-        public NodaTimeDataSet(Func<DateTimeZone> dateTimeZoneBuilder)
+        public NodaTimeDataSet(Func<DateTimeZone>? dateTimeZoneBuilder)
         {
             if (dateTimeZoneBuilder == null)
             {
@@ -114,7 +115,7 @@ namespace Bogus.NodaTime
         /// <summary>
         /// Get a random <see cref="Period"/>. Default 1 week/7 days.
         /// </summary>
-        public Period Period(Period maximum = null)
+        public Period Period(Period? maximum = null)
         {
             Period span;
             if (maximum == null)
