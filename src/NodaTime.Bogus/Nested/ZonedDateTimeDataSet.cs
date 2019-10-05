@@ -40,8 +40,11 @@ namespace Bogus.NodaTime
 
             return Now();
         }
-
-        ZonedDateTime Now()
+        
+        /// <summary>
+        /// Get the current <see cref="ZonedDateTime"/> that respects <code>Func&lt;DateTimeZone&gt; dateTimeZoneBuilder</code>
+        /// </summary>
+        public ZonedDateTime Now()
         {
             var currentInstant = SystemClock.Instance.GetCurrentInstant();
             return new ZonedDateTime(currentInstant, dateTimeZoneBuilder());

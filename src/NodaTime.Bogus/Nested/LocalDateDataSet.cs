@@ -37,7 +37,10 @@ namespace Bogus.NodaTime
             return reference.Value;
         }
 
-        LocalDate Now()
+        /// <summary>
+        /// Get the current <see cref="LocalDate"/> that respects <code>Func&lt;DateTimeZone&gt; dateTimeZoneBuilder</code>
+        /// </summary>
+        public LocalDate Now()
         {
             var currentInstant = SystemClock.Instance.GetCurrentInstant();
             return currentInstant.InZone(dateTimeZoneBuilder()).Date;
