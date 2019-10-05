@@ -10,7 +10,7 @@ public class LocalTimeDataSetTest :
     public LocalTimeDataSetTest(ITestOutputHelper output) :
         base(output)
     {
-        dataSet = new LocalTimeDataSet(()=> DateTimeZone.Utc);
+        dataSet = new LocalTimeDataSet(() => DateTimeZone.Utc);
     }
 
     LocalTimeDataSet dataSet;
@@ -18,9 +18,9 @@ public class LocalTimeDataSetTest :
     [Fact]
     public void Future()
     {
-           var starting = new LocalTime(4,17,41);
+        var starting = new LocalTime(4, 17, 41);
         dataSet.Future(reference: starting).Should()
-            .BeLessOrEqualTo(starting.PlusHours(10))
+            .BeLessOrEqualTo(starting.PlusMinutes(10))
             .And
             .BeGreaterOrEqualTo(starting);
     }
@@ -29,8 +29,8 @@ public class LocalTimeDataSetTest :
     public void Future_with_options()
     {
         var starting = new LocalTime(4, 17, 41);
-        dataSet.Future(reference: starting, hoursToGoForward: 2).Should()
-            .BeLessOrEqualTo(starting.PlusHours(2))
+        dataSet.Future(reference: starting, minutesToGoForward: 2).Should()
+            .BeLessOrEqualTo(starting.PlusMinutes(2))
             .And
             .BeGreaterOrEqualTo(starting);
     }
@@ -42,28 +42,26 @@ public class LocalTimeDataSetTest :
         dataSet.Past(reference: starting).Should()
             .BeLessOrEqualTo(starting)
             .And
-            .BeGreaterOrEqualTo(starting.PlusHours(-10));
+            .BeGreaterOrEqualTo(starting.PlusMinutes(-10));
     }
 
     [Fact]
-    public void Past_0_days_results_in_Random_time()
+    public void Past_0_minutes_results_in_Random_time()
     {
         var localTime = dataSet.Past(0);
-        var now = Now();
+        var now = dataSet.Now();
         localTime.Should()
-            .BeLessOrEqualTo(now)
-            .And
-            .BeGreaterOrEqualTo(now.PlusMinutes(-59));
+            .BeLessOrEqualTo(now);
     }
 
     [Fact]
     public void Past_with_custom_options()
     {
         var starting = new LocalTime(4, 17, 41);
-        dataSet.Past(reference: starting, hoursToGoBack: 1).Should()
+        dataSet.Past(reference: starting, minutesToGoBack: 1).Should()
             .BeLessOrEqualTo(starting)
             .And
-            .BeGreaterOrEqualTo(starting.PlusHours(-1));
+            .BeGreaterOrEqualTo(starting.PlusMinutes(-1));
     }
 
     [Fact]
@@ -75,15 +73,15 @@ public class LocalTimeDataSetTest :
             .Should()
             .BeLessOrEqualTo(start)
             .And
-            .BeGreaterOrEqualTo(start.PlusHours(-1));
+            .BeGreaterOrEqualTo(start.PlusMinutes(-1));
     }
 
 
     [Fact]
     public void Random_time_between_two_dates()
     {
-        var start= new LocalTime(4, 17, 41);
-        var end = new LocalTime( 5, 17, 41);
+        var start = new LocalTime(4, 17, 41);
+        var end = new LocalTime(5, 17, 41);
 
         dataSet.Between(start, end)
             .Should()
@@ -106,7 +104,7 @@ public class LocalTimeDataSetTest :
         dataSet.Soon(2)
             .Should()
             .BeGreaterThan(start)
-            .And.BeLessThan(start.PlusHours(2));
+            .And.BeLessThan(start.PlusMinutes(2));
     }
 
     LocalTime Now()

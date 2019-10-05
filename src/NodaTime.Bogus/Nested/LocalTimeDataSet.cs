@@ -18,13 +18,13 @@ namespace Bogus.NodaTime
         /// <summary>
         /// Get a date in the past between <paramref name="reference"/> and years past that date.
         /// </summary>
-        /// <param name="hoursToGoBack">Hours to go back from <paramref name="reference"/>. Default is 10.</param>
+        /// <param name="minutesToGoBack">Minutes to go back from <paramref name="reference"/>. Default is 10.</param>
         /// <param name="reference">The date to start calculations. Default is SystemClock.Instance.GetCurrentInstant().</param>
-        public LocalTime Past(int hoursToGoBack = 10, LocalTime? reference = null)
+        public LocalTime Past(int minutesToGoBack = 10, LocalTime? reference = null)
         {
             var min = ValueOrNull(reference);
 
-            var totalTicks = TimeSpan.TicksPerHour* hoursToGoBack;
+            var totalTicks = TimeSpan.TicksPerMinute * minutesToGoBack;
 
             var partTicks = Random.Long(0, totalTicks);
 
@@ -40,7 +40,7 @@ namespace Bogus.NodaTime
 
             return reference.Value;
         }
-        
+
         /// <summary>
         /// Get the current <see cref="LocalTime"/> that respects <code>Func&lt;DateTimeZone&gt; dateTimeZoneBuilder</code>
         /// </summary>
@@ -53,23 +53,23 @@ namespace Bogus.NodaTime
         /// <summary>
         /// Get a date and time that will happen soon.
         /// </summary>
-        /// <param name="hours">Maximum hours to go ahead.</param>
-        public LocalTime Soon(int hours = 1)
+        /// <param name="minutes">Maximum minutes to go ahead.</param>
+        public LocalTime Soon(int minutes = 1)
         {
             var now = Now();
-            return Between(now, now.PlusHours(hours));
+            return Between(now, now.PlusMinutes(minutes));
         }
 
         /// <summary>
         /// Get a date in the future between <paramref name="reference"/> and years forward of that date.
         /// </summary>
-        /// <param name="hoursToGoForward">Hours to go forward from <paramref name="reference"/>. Default is 10.</param>
+        /// <param name="minutesToGoForward">Minutes to go forward from <paramref name="reference"/>. Default is 10.</param>
         /// <param name="reference">The date to start calculations. Default is SystemClock.Instance.GetCurrentInstant().</param>
-        public LocalTime Future(int hoursToGoForward = 10, LocalTime? reference = null)
+        public LocalTime Future(int minutesToGoForward = 10, LocalTime? reference = null)
         {
             var min = ValueOrNull(reference);
 
-            var totalTicks = TimeSpan.TicksPerHour * hoursToGoForward;
+            var totalTicks = TimeSpan.TicksPerMinute * minutesToGoForward;
 
             var partTicks = Random.Long(0, totalTicks);
 
@@ -92,14 +92,14 @@ namespace Bogus.NodaTime
         }
 
         /// <summary>
-        /// Get a random date/time within the last few days since now.
+        /// Get a random time within the last few minutes since now.
         /// </summary>
-        /// <param name="hours">Number of hours to go back.</param>
-        public LocalTime Recent(int hours = 1)
+        /// <param name="minutes">Number of minutes to go back.</param>
+        public LocalTime Recent(int minutes = 1)
         {
             var now = Now();
 
-            var totalTicks = TimeSpan.TicksPerHour * hours;
+            var totalTicks = TimeSpan.TicksPerMinute * minutes;
 
             var partTicks = Random.Long(0, totalTicks);
 
