@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using Bogus;
+using VerifyXunit;
 using Xunit;
 using Xunit.Abstractions;
 
 [Collection("Seeded Test")]
 public class SeededTest :
-    XunitApprovalBase
+    VerifyBase
 {
     protected static void ResetGlobalSeed()
     {
@@ -20,7 +21,8 @@ public class SeededTest :
             .Select(i => a()).ToArray();
     }
 
-    public SeededTest(ITestOutputHelper output) : base(output)
+    public SeededTest(ITestOutputHelper output) :
+        base(output)
     {
         //set the random gen manually to a seeded value
         ResetGlobalSeed();
