@@ -1,7 +1,7 @@
 # <img src="/src/icon.png" height="30px"> NodaTime.Bogus
 
 [![Build status](https://ci.appveyor.com/api/projects/status/5if48t86ivcnrits/branch/master?svg=true)](https://ci.appveyor.com/project/SimonCropp/NodaTime-Bogus)
-[![NuGet Status](https://img.shields.io/nuget/v/NodaTime.Bogus.svg?cacheSeconds=86400)](https://www.nuget.org/packages/NodaTime.Bogus/)
+[![NuGet Status](https://img.shields.io/nuget/v/NodaTime.Bogus.svg)](https://www.nuget.org/packages/NodaTime.Bogus/)
 
 Add support for [NodaTime](https://nodatime.org/) to [Bogus](https://github.com/bchavez/Bogus).
 
