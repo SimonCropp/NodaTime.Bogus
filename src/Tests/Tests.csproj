@@ -9,7 +9,7 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
     <PackageReference Include="MarkdownSnippets.MsBuild" Version="17.5.1" PrivateAssets="all" />
     <PackageReference Include="XunitContext" Version="1.5.2" />
-    <PackageReference Include="Verify.Xunit" Version="1.5.2" />
+    <PackageReference Include="Verify.Xunit" Version="1.5.3" />
     <ProjectReference Include="..\NodaTime.Bogus\NodaTime.Bogus.csproj" />
     <PackageReference Include="ProjectDefaults" Version="1.0.37" PrivateAssets="All" />
   </ItemGroup>
