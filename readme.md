@@ -13,7 +13,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 Add support for [NodaTime](https://nodatime.org/) to [Bogus](https://github.com/bchavez/Bogus).
 
 
-## NuGet
+## NuGet package
 
 https://nuget.org/packages/NodaTime.Bogus/
 
@@ -35,7 +35,7 @@ Debug.WriteLine(target.Property1);
 Debug.WriteLine(target.Property2);
 Debug.WriteLine(target.Property3);
 ```
-<sup>[snippet source](/src/Tests/FakerUsage.cs#L11-L21) / [anchor](#snippet-usage)</sup>
+<sup><a href='/src/Tests/FakerUsage.cs#L11-L21' title='File snippet `usage` was extracted from'>snippet source</a> | <a href='#snippet-usage' title='Navigate to start of snippet `usage`'>anchor</a></sup>
 <!-- endsnippet -->
 
 There are several top level generators:
