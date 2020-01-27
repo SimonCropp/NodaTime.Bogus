@@ -59,12 +59,7 @@ There are several nested generators that provide `Past`, `Soon`, `Future`, `Betw
 
 ## Security contact information
 
-To report a security vulnerability, please use the [Tidelift security contact](https://tidelift.com/security). Tidelift will coordinate the fix and disclosure.
-
-
-## Release Notes
-
-See [closed milestones](../../milestones?state=closed).
+To report a security vulnerability, use the [Tidelift security contact](https://tidelift.com/security). Tidelift will coordinate the fix and disclosure.
 
 
 ## Icon
