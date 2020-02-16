@@ -12,6 +12,8 @@ To change this file edit the source file and then run MarkdownSnippets.
 
 Add support for [NodaTime](https://nodatime.org/) to [Bogus](https://github.com/bchavez/Bogus).
 
+Support is available via a [Tidelift Subscription](https://tidelift.com/subscription/pkg/nuget-nodatime.bogus?utm_source=nuget-nodatime.bogus&utm_medium=referral&utm_campaign=enterprise).
+
 
 ## NuGet package
 
