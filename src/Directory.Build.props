@@ -3,6 +3,7 @@
   <PropertyGroup>
     <NoWarn>CS1591</NoWarn>
     <Version>3.0.0</Version>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
     <PackageTags>NodaTime, Bogus</PackageTags>
     <Description>Add support for NodaTime https://nodatime.org/ to Bogus https://github.com/bchavez/Bogus</Description>
   </PropertyGroup>
