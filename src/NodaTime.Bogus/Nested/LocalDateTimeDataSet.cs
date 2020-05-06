@@ -84,12 +84,9 @@ namespace Bogus.NodaTime
             var min = LocalDateTime.Min(start, end);
             var max = LocalDateTime.Max(start, end);
 
-            var total = max - min;
+            var periodBetween = Period.Between(min, max, PeriodUnits.Ticks);
 
-
-            var partTicks = Random.Double() * total.ToDuration().TotalTicks;
-
-            return min.PlusTicks(Convert.ToInt64(partTicks));
+            return min.PlusTicks(Random.Long(0, periodBetween.Ticks));
         }
 
         /// <summary>
@@ -99,15 +96,9 @@ namespace Bogus.NodaTime
         public LocalDateTime Recent(int days = 10)
         {
             var now = Now();
-
             var min = days == 0 ? now : now.Minus(Period.FromDays(days));
 
-            var totalTicks = (now - min).ToDuration().TotalTicks;
-
-            //find % of the timespan
-            var partTicks = Random.Double() * totalTicks;
-
-            return now.PlusTicks(-Convert.ToInt64(partTicks));
+            return Between(now, min);
         }
     }
 }

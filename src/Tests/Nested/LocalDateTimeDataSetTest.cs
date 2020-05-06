@@ -76,12 +76,48 @@ public class LocalDateTimeDataSetTest :
             .BeGreaterOrEqualTo(start.Minus(Period.FromDays(10)));
     }
 
+    [Theory]
+    [InlineData(1)]
+    [InlineData(10)]
+    [InlineData(50)]
+    [InlineData(100)]
+    [InlineData(500)]
+    public void Recently_with_many_days(int days)
+    {
+        var start = Now();
+        dataSet.Recent(days)
+            .Should()
+            .BeLessOrEqualTo(start)
+            .And
+            .BeGreaterOrEqualTo(start.Minus(Period.FromDays(days)));
+    }
+
 
     [Fact]
     public void Random_time_between_two_dates()
     {
         var start= new LocalDateTime(2015, 6, 6, 4, 17, 41);
         var end = new LocalDateTime(2015, 6, 8, 4, 17, 41);
+
+        dataSet.Between(start, end)
+            .Should()
+            .BeGreaterOrEqualTo(start)
+            .And
+            .BeLessOrEqualTo(end);
+
+        //and reverse...
+        dataSet.Between(end, start)
+            .Should()
+            .BeGreaterOrEqualTo(start)
+            .And
+            .BeLessOrEqualTo(end);
+    }
+
+    [Fact]
+    public void Random_time_between_two_far_apart_dates()
+    {
+        var start = new LocalDateTime(1956, 6, 6, 4, 17, 41);
+        var end = new LocalDateTime(2020, 7, 3, 2, 17, 41);
 
         dataSet.Between(start, end)
             .Should()

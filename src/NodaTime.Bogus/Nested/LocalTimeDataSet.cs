@@ -84,11 +84,9 @@ namespace Bogus.NodaTime
             var min = LocalTime.Min(start, end);
             var max = LocalTime.Max(start, end);
 
-            var total = max - min;
+            var periodBetween = Period.Between(min, max, PeriodUnits.Ticks);
 
-            var partTicks = Random.Double() * total.ToDuration().TotalTicks;
-
-            return min.PlusTicks(Convert.ToInt64(partTicks));
+            return min.PlusTicks(Random.Long(0, periodBetween.Ticks));
         }
 
         /// <summary>
