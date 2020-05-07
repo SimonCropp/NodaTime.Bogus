@@ -98,6 +98,26 @@ public class LocalDateDataSetTest :
     }
 
     [Fact]
+    public void Random_time_between_far_apart_dates()
+    {
+        var start = new LocalDate(1976, 6, 6);
+        var end = new LocalDate(2020, 2, 8);
+
+        dataSet.Between(start, end)
+            .Should()
+            .BeGreaterOrEqualTo(start)
+            .And
+            .BeLessOrEqualTo(end);
+
+        //and reverse...
+        dataSet.Between(end, start)
+            .Should()
+            .BeGreaterOrEqualTo(start)
+            .And
+            .BeLessOrEqualTo(end);
+    }
+
+    [Fact]
     public void Time_that_will_happen_soon()
     {
         var start = Now();

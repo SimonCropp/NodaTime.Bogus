@@ -78,9 +78,9 @@ namespace Bogus.NodaTime
             var min = LocalDate.Min(start, end);
             var max = LocalDate.Max(start, end);
 
-            var total = max - min;
+            var periodBetween = Period.Between(min, max, PeriodUnits.Days);
 
-            var randomDays = Random.Int(0, (int)total.ToDuration().TotalDays);
+            var randomDays = Random.Int(0, periodBetween.Days);
 
             return min.PlusDays(randomDays);
         }

@@ -115,21 +115,15 @@ namespace Bogus.NodaTime
         /// <summary>
         /// Get a random <see cref="Period"/>. Default 1 week/7 days.
         /// </summary>
-        public Period Period(Period? maximum = null)
+        public Period Period(Period? maximum = null, LocalDateTime? anchor = null, PeriodUnits units = global::NodaTime.PeriodUnits.AllUnits)
         {
-            Period span;
-            if (maximum == null)
-            {
-                span = global::NodaTime.Period.FromDays(7);
-            }
-            else
-            {
-                span = maximum;
-            }
+            var anchorTime = anchor ?? LocalDateTime.Now();
+            var span = maximum ?? global::NodaTime.Period.FromDays(7);
 
-            var partTimeSpanTicks = Random.Double() * span.ToDuration().TotalTicks;
+            var periodTicks = global::NodaTime.Period.Between(anchorTime, anchorTime + span, global::NodaTime.PeriodUnits.Ticks);
+            var randomTicks = global::NodaTime.Period.FromTicks(Random.Long(0, periodTicks.Ticks));
 
-            return global::NodaTime.Period.FromTicks(Convert.ToInt64(partTimeSpanTicks));
+            return global::NodaTime.Period.Between(anchorTime, anchorTime + randomTicks, units);
         }
 
         /// <summary>
