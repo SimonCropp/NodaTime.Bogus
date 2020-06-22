@@ -3,13 +3,11 @@ using Bogus.NodaTime;
 using FluentAssertions;
 using NodaTime;
 using Xunit;
-using Xunit.Abstractions;
 
 public class ZonedDateTimeDataSetTest :
     SeededTest
 {
-    public ZonedDateTimeDataSetTest(ITestOutputHelper output) :
-        base(output)
+    public ZonedDateTimeDataSetTest()
     {
         dataSet = new ZonedDateTimeDataSet(() => DateTimeZone.Utc);
     }
