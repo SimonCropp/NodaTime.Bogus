@@ -38,7 +38,7 @@ Debug.WriteLine(target.Property2);
 Debug.WriteLine(target.Property3);
 ```
 <sup><a href='/src/Tests/FakerUsage.cs#L11-L21' title='File snippet `usage` was extracted from'>snippet source</a> | <a href='#snippet-usage' title='Navigate to start of snippet `usage`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 There are several top level generators:
 
