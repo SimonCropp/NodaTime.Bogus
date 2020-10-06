@@ -18,7 +18,7 @@ https://nuget.org/packages/NodaTime.Bogus/
 This project extends `Faker` with `.Noda()`.
 
 <!-- snippet: usage -->
-<a id='snippet-usage'></a>
+<a id='c629ba0e'></a>
 ```cs
 var faker = new Faker<Target>()
     .RuleFor(u => u.Property1, (f, u) => f.Noda().Duration())
@@ -30,7 +30,7 @@ Debug.WriteLine(target.Property1);
 Debug.WriteLine(target.Property2);
 Debug.WriteLine(target.Property3);
 ```
-<sup><a href='/src/Tests/FakerUsage.cs#L11-L21' title='Snippet source file'>snippet source</a> | <a href='#snippet-usage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/FakerUsage.cs#L11-L21' title='Snippet source file'>snippet source</a> | <a href='#c629ba0e' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 There are several top level generators:
