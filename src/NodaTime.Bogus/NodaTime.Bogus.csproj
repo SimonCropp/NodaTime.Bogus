@@ -4,7 +4,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Bogus" Version="32.0.2" />
-    <PackageReference Include="NodaTime" Version="3.0.3" />
+    <PackageReference Include="NodaTime" Version="3.0.4" />
     <PackageReference Include="ProjectDefaults" Version="1.0.53" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" Condition="$(Configuration) == 'Release'" />
   </ItemGroup>
