@@ -5,8 +5,6 @@
 
 Add support for [NodaTime](https://nodatime.org/) to [Bogus](https://github.com/bchavez/Bogus).
 
-Support is available via a [Tidelift Subscription](https://tidelift.com/subscription/pkg/nuget-nodatime.bogus?utm_source=nuget-nodatime.bogus&utm_medium=referral&utm_campaign=enterprise).
-
 
 ## NuGet package
 
@@ -50,11 +48,6 @@ There are several nested generators that provide `Past`, `Soon`, `Future`, `Betw
  * `.LocalDateTime`: Generators for [LocalDateTime](https://nodatime.org/unstable/api/NodaTime.LocalDateTime.html)
  * `.LocalTime`: Generators for [LocalTime](https://nodatime.org/unstable/api/NodaTime.LocalTime.html)
  * `.ZonedDateTime`: Generators for [ZonedDateTime](https://nodatime.org/unstable/api/NodaTime.ZonedDateTime.html)
-
-
-## Security contact information
-
-To report a security vulnerability, use the [Tidelift security contact](https://tidelift.com/security). Tidelift will coordinate the fix and disclosure.
 
 
 ## Icon
