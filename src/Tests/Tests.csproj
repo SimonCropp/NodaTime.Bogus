@@ -3,11 +3,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    <PackageReference Include="FluentAssertions" Version="6.0.0" />
     <PackageReference Include="Xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
     <PackageReference Include="Verify.Xunit" Version="11.24.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
     <PackageReference Include="MarkdownSnippets.MsBuild" Version="23.1.4" PrivateAssets="all" />
     <ProjectReference Include="..\NodaTime.Bogus\NodaTime.Bogus.csproj" />
     <PackageReference Include="ProjectDefaults" Version="1.0.56" PrivateAssets="All" />
