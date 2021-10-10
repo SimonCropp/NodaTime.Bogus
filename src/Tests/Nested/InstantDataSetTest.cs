@@ -8,7 +8,7 @@ public class InstantDataSetTest :
 {
     public InstantDataSetTest()
     {
-        dataSet = new InstantDataSet();
+        dataSet = new();
     }
 
     InstantDataSet dataSet;

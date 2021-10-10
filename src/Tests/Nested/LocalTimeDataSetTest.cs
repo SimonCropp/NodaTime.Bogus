@@ -8,7 +8,7 @@ public class LocalTimeDataSetTest :
 {
     public LocalTimeDataSetTest()
     {
-        dataSet = new LocalTimeDataSet(() => DateTimeZone.Utc);
+        dataSet = new(() => DateTimeZone.Utc);
     }
 
     LocalTimeDataSet dataSet;

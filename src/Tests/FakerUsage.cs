@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Bogus;
+﻿using Bogus;
 using NodaTime;
 using Xunit;
 
@@ -10,9 +9,9 @@ public class FakerUsage
     {
         #region usage
         var faker = new Faker<Target>()
-            .RuleFor(u => u.Property1, (f, u) => f.Noda().Duration())
-            .RuleFor(u => u.Property2, (f, u) => f.Noda().Instant.Recent())
-            .RuleFor(u => u.Property3, (f, u) => f.Noda().ZonedDateTime.Future());
+            .RuleFor(u => u.Property1, (f, _) => f.Noda().Duration())
+            .RuleFor(u => u.Property2, (f, _) => f.Noda().Instant.Recent())
+            .RuleFor(u => u.Property3, (f, _) => f.Noda().ZonedDateTime.Future());
 
         var target = faker.Generate();
         Debug.WriteLine(target.Property1);

@@ -1,5 +1,4 @@
-﻿using System;
-using Bogus.NodaTime;
+﻿using Bogus.NodaTime;
 using FluentAssertions;
 using NodaTime;
 using Xunit;
@@ -9,7 +8,7 @@ public class ZonedDateTimeDataSetTest :
 {
     public ZonedDateTimeDataSetTest()
     {
-        dataSet = new ZonedDateTimeDataSet(() => DateTimeZone.Utc);
+        dataSet = new(() => DateTimeZone.Utc);
     }
 
     ZonedDateTimeDataSet dataSet;

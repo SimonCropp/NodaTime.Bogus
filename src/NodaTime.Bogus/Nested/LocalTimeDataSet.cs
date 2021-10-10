@@ -1,107 +1,105 @@
-using System;
 using NodaTime;
 
-namespace Bogus.NodaTime
+namespace Bogus.NodaTime;
+
+/// <summary>
+/// Methods for generating <see cref="LocalTime"/>s.
+/// </summary>
+public class LocalTimeDataSet : DataSet
 {
-    /// <summary>
-    /// Methods for generating <see cref="LocalTime"/>s.
-    /// </summary>
-    public class LocalTimeDataSet : DataSet
+    Func<DateTimeZone> dateTimeZoneBuilder;
+
+    public LocalTimeDataSet(Func<DateTimeZone> dateTimeZoneBuilder)
     {
-        Func<DateTimeZone> dateTimeZoneBuilder;
+        this.dateTimeZoneBuilder = dateTimeZoneBuilder;
+    }
 
-        public LocalTimeDataSet(Func<DateTimeZone> dateTimeZoneBuilder)
+    /// <summary>
+    /// Get a date in the past between <paramref name="reference"/> and years past that date.
+    /// </summary>
+    /// <param name="minutesToGoBack">Minutes to go back from <paramref name="reference"/>. Default is 10.</param>
+    /// <param name="reference">The date to start calculations. Default is SystemClock.Instance.GetCurrentInstant().</param>
+    public LocalTime Past(int minutesToGoBack = 10, LocalTime? reference = null)
+    {
+        var min = ValueOrNull(reference);
+
+        var totalTicks = TimeSpan.TicksPerMinute * minutesToGoBack;
+
+        var partTicks = Random.Long(0, totalTicks);
+
+        return min.PlusTicks(-partTicks);
+    }
+
+    LocalTime ValueOrNull(LocalTime? reference)
+    {
+        if (reference == null)
         {
-            this.dateTimeZoneBuilder = dateTimeZoneBuilder;
+            return Now();
         }
 
-        /// <summary>
-        /// Get a date in the past between <paramref name="reference"/> and years past that date.
-        /// </summary>
-        /// <param name="minutesToGoBack">Minutes to go back from <paramref name="reference"/>. Default is 10.</param>
-        /// <param name="reference">The date to start calculations. Default is SystemClock.Instance.GetCurrentInstant().</param>
-        public LocalTime Past(int minutesToGoBack = 10, LocalTime? reference = null)
-        {
-            var min = ValueOrNull(reference);
+        return reference.Value;
+    }
 
-            var totalTicks = TimeSpan.TicksPerMinute * minutesToGoBack;
+    /// <summary>
+    /// Get the current <see cref="LocalTime"/> that respects <code>Func&lt;DateTimeZone&gt; dateTimeZoneBuilder</code>
+    /// </summary>
+    public LocalTime Now()
+    {
+        var currentInstant = SystemClock.Instance.GetCurrentInstant();
+        return currentInstant.InZone(dateTimeZoneBuilder()).TimeOfDay;
+    }
 
-            var partTicks = Random.Long(0, totalTicks);
+    /// <summary>
+    /// Get a date and time that will happen soon.
+    /// </summary>
+    /// <param name="minutes">Maximum minutes to go ahead.</param>
+    public LocalTime Soon(int minutes = 1)
+    {
+        var now = Now();
+        return Between(now, now.PlusMinutes(minutes));
+    }
 
-            return min.PlusTicks(-partTicks);
-        }
+    /// <summary>
+    /// Get a date in the future between <paramref name="reference"/> and years forward of that date.
+    /// </summary>
+    /// <param name="minutesToGoForward">Minutes to go forward from <paramref name="reference"/>. Default is 10.</param>
+    /// <param name="reference">The date to start calculations. Default is SystemClock.Instance.GetCurrentInstant().</param>
+    public LocalTime Future(int minutesToGoForward = 10, LocalTime? reference = null)
+    {
+        var min = ValueOrNull(reference);
 
-        LocalTime ValueOrNull(LocalTime? reference)
-        {
-            if (reference == null)
-            {
-                return Now();
-            }
+        var totalTicks = TimeSpan.TicksPerMinute * minutesToGoForward;
 
-            return reference.Value;
-        }
+        var partTicks = Random.Long(0, totalTicks);
 
-        /// <summary>
-        /// Get the current <see cref="LocalTime"/> that respects <code>Func&lt;DateTimeZone&gt; dateTimeZoneBuilder</code>
-        /// </summary>
-        public LocalTime Now()
-        {
-            var currentInstant = SystemClock.Instance.GetCurrentInstant();
-            return currentInstant.InZone(dateTimeZoneBuilder()).TimeOfDay;
-        }
+        return min.PlusTicks(partTicks);
+    }
 
-        /// <summary>
-        /// Get a date and time that will happen soon.
-        /// </summary>
-        /// <param name="minutes">Maximum minutes to go ahead.</param>
-        public LocalTime Soon(int minutes = 1)
-        {
-            var now = Now();
-            return Between(now, now.PlusMinutes(minutes));
-        }
+    /// <summary>
+    /// Get a random date between start and end.
+    /// </summary>
+    public LocalTime Between(LocalTime start, LocalTime end)
+    {
+        var min = LocalTime.Min(start, end);
+        var max = LocalTime.Max(start, end);
 
-        /// <summary>
-        /// Get a date in the future between <paramref name="reference"/> and years forward of that date.
-        /// </summary>
-        /// <param name="minutesToGoForward">Minutes to go forward from <paramref name="reference"/>. Default is 10.</param>
-        /// <param name="reference">The date to start calculations. Default is SystemClock.Instance.GetCurrentInstant().</param>
-        public LocalTime Future(int minutesToGoForward = 10, LocalTime? reference = null)
-        {
-            var min = ValueOrNull(reference);
+        var periodBetween = Period.Between(min, max, PeriodUnits.Ticks);
 
-            var totalTicks = TimeSpan.TicksPerMinute * minutesToGoForward;
+        return min.PlusTicks(Random.Long(0, periodBetween.Ticks));
+    }
 
-            var partTicks = Random.Long(0, totalTicks);
+    /// <summary>
+    /// Get a random time within the last few minutes since now.
+    /// </summary>
+    /// <param name="minutes">Number of minutes to go back.</param>
+    public LocalTime Recent(int minutes = 1)
+    {
+        var now = Now();
 
-            return min.PlusTicks(partTicks);
-        }
+        var totalTicks = TimeSpan.TicksPerMinute * minutes;
 
-        /// <summary>
-        /// Get a random date between start and end.
-        /// </summary>
-        public LocalTime Between(LocalTime start, LocalTime end)
-        {
-            var min = LocalTime.Min(start, end);
-            var max = LocalTime.Max(start, end);
+        var partTicks = Random.Long(0, totalTicks);
 
-            var periodBetween = Period.Between(min, max, PeriodUnits.Ticks);
-
-            return min.PlusTicks(Random.Long(0, periodBetween.Ticks));
-        }
-
-        /// <summary>
-        /// Get a random time within the last few minutes since now.
-        /// </summary>
-        /// <param name="minutes">Number of minutes to go back.</param>
-        public LocalTime Recent(int minutes = 1)
-        {
-            var now = Now();
-
-            var totalTicks = TimeSpan.TicksPerMinute * minutes;
-
-            var partTicks = Random.Long(0, totalTicks);
-
-            return now.PlusTicks(-partTicks);
-        }
+        return now.PlusTicks(-partTicks);
     }
 }

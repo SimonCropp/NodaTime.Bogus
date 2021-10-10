@@ -54,6 +54,6 @@ public class NodaTimeDataSetTest
 
     public NodaTimeDataSetTest()
     {
-        dataSet = new NodaTimeDataSet(() => DateTimeZone.Utc);
+        dataSet = new(() => DateTimeZone.Utc);
     }
 }
