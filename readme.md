@@ -19,16 +19,16 @@ This project extends `Faker` with `.Noda()`.
 <a id='snippet-usage'></a>
 ```cs
 var faker = new Faker<Target>()
-    .RuleFor(u => u.Property1, (f, u) => f.Noda().Duration())
-    .RuleFor(u => u.Property2, (f, u) => f.Noda().Instant.Recent())
-    .RuleFor(u => u.Property3, (f, u) => f.Noda().ZonedDateTime.Future());
+    .RuleFor(u => u.Property1, (f, _) => f.Noda().Duration())
+    .RuleFor(u => u.Property2, (f, _) => f.Noda().Instant.Recent())
+    .RuleFor(u => u.Property3, (f, _) => f.Noda().ZonedDateTime.Future());
 
 var target = faker.Generate();
 Debug.WriteLine(target.Property1);
 Debug.WriteLine(target.Property2);
 Debug.WriteLine(target.Property3);
 ```
-<sup><a href='/src/Tests/FakerUsage.cs#L11-L21' title='Snippet source file'>snippet source</a> | <a href='#snippet-usage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/FakerUsage.cs#L10-L20' title='Snippet source file'>snippet source</a> | <a href='#snippet-usage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 There are several top level generators:
