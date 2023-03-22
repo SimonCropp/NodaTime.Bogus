@@ -14,15 +14,11 @@ public class NodaTimeDataSet :
 
     public static Func<NodaTimeDataSet, DateTimeZone> DateTimeZoneBuilder { get; set; } = set => set.DateTimeZone();
 
-    public static void AlwaysUseDtcDateTimeZone()
-    {
+    public static void AlwaysUseDtcDateTimeZone() =>
         DateTimeZoneBuilder = _ => global::NodaTime.DateTimeZone.Utc;
-    }
 
-    public static void AlwaysUseSystemDefaultDateTimeZone()
-    {
+    public static void AlwaysUseSystemDefaultDateTimeZone() =>
         DateTimeZoneBuilder = _ => DateTimeZoneProviders.Tzdb.GetSystemDefault();
-    }
 
     public NodaTimeDataSet() : this(null)
     {
@@ -30,7 +26,7 @@ public class NodaTimeDataSet :
 
     public NodaTimeDataSet(Func<DateTimeZone>? dateTimeZoneBuilder)
     {
-        dateTimeZoneBuilder ??= () => NodaTimeDataSet.DateTimeZoneBuilder(this);
+        dateTimeZoneBuilder ??= () => DateTimeZoneBuilder(this);
 
         Instant = new()
         {
@@ -66,10 +62,8 @@ public class NodaTimeDataSet :
     /// <summary>
     /// Get a random <see cref="DateTimeZone"/>.
     /// </summary>
-    public DateTimeZone DateTimeZone()
-    {
-        return global::NodaTime.DateTimeZone.ForOffset(Offset());
-    }
+    public DateTimeZone DateTimeZone() =>
+        global::NodaTime.DateTimeZone.ForOffset(Offset());
 
     /// <summary>
     /// Get a random <see cref="CalendarSystem"/>.
@@ -83,18 +77,14 @@ public class NodaTimeDataSet :
     /// <summary>
     /// Get a random <see cref="PeriodUnits"/>.
     /// </summary>
-    public PeriodUnits PeriodUnits()
-    {
-        return Random.Enum<PeriodUnits>();
-    }
+    public PeriodUnits PeriodUnits() =>
+        Random.Enum<PeriodUnits>();
 
     /// <summary>
     /// Get a random <see cref="IsoDayOfWeek"/>.
     /// </summary>
-    public IsoDayOfWeek IsoDayOfWeek()
-    {
-        return Random.Enum<IsoDayOfWeek>();
-    }
+    public IsoDayOfWeek IsoDayOfWeek() =>
+        Random.Enum<IsoDayOfWeek>();
 
     /// <summary>
     /// Get a random <see cref="Period"/>. Default 1 week/7 days.

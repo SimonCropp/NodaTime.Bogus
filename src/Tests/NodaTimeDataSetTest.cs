@@ -1,7 +1,6 @@
 ﻿using Bogus.NodaTime;
 using FluentAssertions;
 using NodaTime;
-using Xunit;
 
 public class NodaTimeDataSetTest
 {
@@ -52,8 +51,6 @@ public class NodaTimeDataSetTest
         Assert.NotNull(calendarSystem);
     }
 
-    public NodaTimeDataSetTest()
-    {
+    public NodaTimeDataSetTest() =>
         dataSet = new(() => DateTimeZone.Utc);
-    }
 }

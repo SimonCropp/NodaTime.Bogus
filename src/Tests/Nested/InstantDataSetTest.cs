@@ -1,15 +1,12 @@
 ﻿using Bogus.NodaTime;
 using FluentAssertions;
 using NodaTime;
-using Xunit;
 
 public class InstantDataSetTest :
     SeededTest
 {
-    public InstantDataSetTest()
-    {
+    public InstantDataSetTest() =>
         dataSet = new();
-    }
 
     InstantDataSet dataSet;
 

@@ -1,6 +1,5 @@
 ﻿using Bogus;
 using NodaTime;
-using Xunit;
 
 public class FakerUsage
 {

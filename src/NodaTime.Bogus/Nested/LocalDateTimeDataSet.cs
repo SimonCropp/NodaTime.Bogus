@@ -9,10 +9,8 @@ public class LocalDateTimeDataSet : DataSet
 {
     Func<DateTimeZone> dateTimeZoneBuilder;
 
-    public LocalDateTimeDataSet(Func<DateTimeZone> dateTimeZoneBuilder)
-    {
+    public LocalDateTimeDataSet(Func<DateTimeZone> dateTimeZoneBuilder) =>
         this.dateTimeZoneBuilder = dateTimeZoneBuilder;
-    }
 
     /// <summary>
     /// Get a date in the past between <paramref name="reference"/> and years past that date.
@@ -39,7 +37,7 @@ public class LocalDateTimeDataSet : DataSet
 
         return reference.Value;
     }
-        
+
     /// <summary>
     /// Get the current <see cref="LocalDateTime"/> that respects <code>Func&lt;DateTimeZone&gt; dateTimeZoneBuilder</code>
     /// </summary>

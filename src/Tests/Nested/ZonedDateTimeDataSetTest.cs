@@ -1,15 +1,12 @@
 ﻿using Bogus.NodaTime;
 using FluentAssertions;
 using NodaTime;
-using Xunit;
 
 public class ZonedDateTimeDataSetTest :
     SeededTest
 {
-    public ZonedDateTimeDataSetTest()
-    {
+    public ZonedDateTimeDataSetTest() =>
         dataSet = new(() => DateTimeZone.Utc);
-    }
 
     ZonedDateTimeDataSet dataSet;
 

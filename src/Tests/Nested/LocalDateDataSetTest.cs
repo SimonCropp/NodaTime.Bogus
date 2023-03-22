@@ -1,15 +1,12 @@
 ﻿using Bogus.NodaTime;
 using FluentAssertions;
 using NodaTime;
-using Xunit;
 
 public class LocalDateDataSetTest :
     SeededTest
 {
-    public LocalDateDataSetTest()
-    {
+    public LocalDateDataSetTest() =>
         dataSet = new(()=> DateTimeZone.Utc);
-    }
 
     LocalDateDataSet dataSet;
 
@@ -125,7 +122,7 @@ public class LocalDateDataSetTest :
             .And.BeLessThan(start.Plus(Period.FromDays(3)));
     }
 
-    LocalDate Now()
+    static LocalDate Now()
     {
         var currentInstant = SystemClock.Instance.GetCurrentInstant();
         return currentInstant.InUtc().Date;

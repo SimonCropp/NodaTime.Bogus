@@ -9,10 +9,8 @@ public class LocalDateDataSet : DataSet
 {
     Func<DateTimeZone> dateTimeZoneBuilder;
 
-    public LocalDateDataSet(Func<DateTimeZone> dateTimeZoneBuilder)
-    {
+    public LocalDateDataSet(Func<DateTimeZone> dateTimeZoneBuilder) =>
         this.dateTimeZoneBuilder = dateTimeZoneBuilder;
-    }
 
     /// <summary>
     /// Get a date in the past between <paramref name="reference"/> and years past that date.

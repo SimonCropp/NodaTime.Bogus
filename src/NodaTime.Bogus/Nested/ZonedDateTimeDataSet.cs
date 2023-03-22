@@ -9,10 +9,8 @@ public class ZonedDateTimeDataSet : DataSet
 {
     Func<DateTimeZone> dateTimeZoneBuilder;
 
-    public ZonedDateTimeDataSet(Func<DateTimeZone> dateTimeZoneBuilder)
-    {
+    public ZonedDateTimeDataSet(Func<DateTimeZone> dateTimeZoneBuilder) =>
         this.dateTimeZoneBuilder = dateTimeZoneBuilder;
-    }
 
     /// <summary>
     /// Get a date in the past between <paramref name="reference"/> and years past that date.
@@ -39,7 +37,7 @@ public class ZonedDateTimeDataSet : DataSet
 
         return Now();
     }
-        
+
     /// <summary>
     /// Get the current <see cref="ZonedDateTime"/> that respects <code>Func&lt;DateTimeZone&gt; dateTimeZoneBuilder</code>
     /// </summary>
