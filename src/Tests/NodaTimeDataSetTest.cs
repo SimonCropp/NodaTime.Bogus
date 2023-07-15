@@ -4,7 +4,7 @@ using NodaTime;
 
 public class NodaTimeDataSetTest
 {
-    NodaTimeDataSet dataSet;
+    NodaTimeDataSet dataSet = new(() => DateTimeZone.Utc);
 
     [Fact]
     public void Period()
@@ -36,7 +36,6 @@ public class NodaTimeDataSetTest
         (anchorDateTime + period).Should().BeLessOrEqualTo(anchorDateTime + NodaTime.Period.FromMonths(2));
     }
 
-
     [Fact]
     public void Duration()
     {
@@ -54,17 +53,16 @@ public class NodaTimeDataSetTest
     [Fact]
     public void Random_changed()
     {
-        var newRandom = new Bogus.Randomizer();
-        var sut = new NodaTimeDataSet();
-        sut.Random = newRandom;
+        var random = new Bogus.Randomizer();
+        var sut = new NodaTimeDataSet
+        {
+            Random = random
+        };
 
-        sut.Instant.Random.Should().BeSameAs(newRandom);
-        sut.LocalDate.Random.Should().BeSameAs(newRandom);
-        sut.LocalDateTime.Random.Should().BeSameAs(newRandom);
-        sut.LocalTime.Random.Should().BeSameAs(newRandom);
-        sut.ZonedDateTime.Random.Should().BeSameAs(newRandom);
+        sut.Instant.Random.Should().BeSameAs(random);
+        sut.LocalDate.Random.Should().BeSameAs(random);
+        sut.LocalDateTime.Random.Should().BeSameAs(random);
+        sut.LocalTime.Random.Should().BeSameAs(random);
+        sut.ZonedDateTime.Random.Should().BeSameAs(random);
     }
-
-    public NodaTimeDataSetTest() =>
-        dataSet = new(() => DateTimeZone.Utc);
 }

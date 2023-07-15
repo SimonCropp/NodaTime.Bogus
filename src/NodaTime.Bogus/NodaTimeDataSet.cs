@@ -28,22 +28,26 @@ public class NodaTimeDataSet :
     {
         dateTimeZoneBuilder ??= () => DateTimeZoneBuilder(this);
 
-        Instant = Notifier.Flow(new InstantDataSet()
-        {
-            Random = Random
-        });
-        LocalDate = Notifier.Flow(new LocalDateDataSet(dateTimeZoneBuilder)
-        {
-            Random = Random
-        });
-        LocalDateTime = Notifier.Flow(new LocalDateTimeDataSet(dateTimeZoneBuilder)
-        {
-            Random = Random
-        });
-        LocalTime = Notifier.Flow(new LocalTimeDataSet(dateTimeZoneBuilder)
-        {
-            Random = Random
-        });
+        Instant = Notifier.Flow(
+            new InstantDataSet
+            {
+                Random = Random
+            });
+        LocalDate = Notifier.Flow(
+            new LocalDateDataSet(dateTimeZoneBuilder)
+            {
+                Random = Random
+            });
+        LocalDateTime = Notifier.Flow(
+            new LocalDateTimeDataSet(dateTimeZoneBuilder)
+            {
+                Random = Random
+            });
+        LocalTime = Notifier.Flow(
+            new LocalTimeDataSet(dateTimeZoneBuilder)
+            {
+                Random = Random
+            });
         ZonedDateTime = Notifier.Flow(new ZonedDateTimeDataSet(dateTimeZoneBuilder)
         {
             Random = Random
