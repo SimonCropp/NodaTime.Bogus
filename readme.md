@@ -5,6 +5,8 @@
 
 Add support for [NodaTime](https://nodatime.org/) to [Bogus](https://github.com/bchavez/Bogus).
 
+**See [Milestones](../../milestones?state=closed) for release notes.**
+
 
 ## NuGet package
 
