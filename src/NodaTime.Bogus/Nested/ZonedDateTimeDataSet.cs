@@ -5,13 +5,9 @@ namespace Bogus.NodaTime;
 /// <summary>
 /// Methods for generating <see cref="ZonedDateTime"/>s.
 /// </summary>
-public class ZonedDateTimeDataSet : DataSet
+public class ZonedDateTimeDataSet(Func<DateTimeZone> dateTimeZoneBuilder) :
+    DataSet
 {
-    Func<DateTimeZone> dateTimeZoneBuilder;
-
-    public ZonedDateTimeDataSet(Func<DateTimeZone> dateTimeZoneBuilder) =>
-        this.dateTimeZoneBuilder = dateTimeZoneBuilder;
-
     /// <summary>
     /// Get a date in the past between <paramref name="reference"/> and years past that date.
     /// </summary>

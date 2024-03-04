@@ -5,13 +5,9 @@ namespace Bogus.NodaTime;
 /// <summary>
 /// Methods for generating <see cref="LocalDate"/>s.
 /// </summary>
-public class LocalDateDataSet : DataSet
+public class LocalDateDataSet(Func<DateTimeZone> dateTimeZoneBuilder) :
+    DataSet
 {
-    Func<DateTimeZone> dateTimeZoneBuilder;
-
-    public LocalDateDataSet(Func<DateTimeZone> dateTimeZoneBuilder) =>
-        this.dateTimeZoneBuilder = dateTimeZoneBuilder;
-
     /// <summary>
     /// Get a date in the past between <paramref name="reference"/> and years past that date.
     /// </summary>
