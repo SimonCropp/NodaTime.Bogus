@@ -10,6 +10,6 @@
     <PackageReference Include="Verify.Xunit" Version="24.1.0" />
     <PackageReference Include="MarkdownSnippets.MsBuild" Version="27.0.2" PrivateAssets="all" />
     <ProjectReference Include="..\NodaTime.Bogus\NodaTime.Bogus.csproj" />
-    <PackageReference Include="ProjectDefaults" Version="1.0.126" PrivateAssets="all" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.127" PrivateAssets="all" />
   </ItemGroup>
 </Project>
