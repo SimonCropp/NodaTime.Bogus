@@ -6,7 +6,7 @@ public class LocalDateTimeDataSetTest :
     SeededTest
 {
     public LocalDateTimeDataSetTest() =>
-        dataSet = new(()=> DateTimeZone.Utc);
+        dataSet = new(() => DateTimeZone.Utc);
 
     LocalDateTimeDataSet dataSet;
 
