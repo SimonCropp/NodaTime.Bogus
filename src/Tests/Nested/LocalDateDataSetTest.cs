@@ -1,14 +1,9 @@
-﻿using Bogus.NodaTime;
-using FluentAssertions;
-using NodaTime;
+﻿using FluentAssertions;
 
 public class LocalDateDataSetTest :
     SeededTest
 {
-    public LocalDateDataSetTest() =>
-        dataSet = new(()=> DateTimeZone.Utc);
-
-    LocalDateDataSet dataSet;
+    LocalDateDataSet dataSet = new(()=> DateTimeZone.Utc);
 
     [Fact]
     public void Future()
