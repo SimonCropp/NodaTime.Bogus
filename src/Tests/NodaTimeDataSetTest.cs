@@ -1,5 +1,3 @@
-using FluentAssertions;
-
 public class NodaTimeDataSetTest
 {
     NodaTimeDataSet dataSet = new(() => DateTimeZone.Utc);
@@ -31,7 +29,7 @@ public class NodaTimeDataSetTest
         var anchorDateTime = new LocalDateTime(2013, 1, 3, 4, 6, 7);
         var period = dataSet.Period(NodaTime.Period.FromMonths(2), anchorDateTime);
 
-        (anchorDateTime + period).Should().BeLessOrEqualTo(anchorDateTime + NodaTime.Period.FromMonths(2));
+        Assert.True((anchorDateTime + period) <= (anchorDateTime + NodaTime.Period.FromMonths(2)));
     }
 
     [Fact]
@@ -57,10 +55,10 @@ public class NodaTimeDataSetTest
             Random = random
         };
 
-        sut.Instant.Random.Should().BeSameAs(random);
-        sut.LocalDate.Random.Should().BeSameAs(random);
-        sut.LocalDateTime.Random.Should().BeSameAs(random);
-        sut.LocalTime.Random.Should().BeSameAs(random);
-        sut.ZonedDateTime.Random.Should().BeSameAs(random);
+        Assert.Same(random, sut.Instant.Random);
+        Assert.Same(random, sut.LocalDate.Random);
+        Assert.Same(random, sut.LocalDateTime.Random);
+        Assert.Same(random, sut.LocalTime.Random);
+        Assert.Same(random, sut.ZonedDateTime.Random);
     }
 }
