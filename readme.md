@@ -1,6 +1,6 @@
 # <img src="/src/icon.png" height="30px"> NodaTime.Bogus
 
-[![Build status](https://img.shields.io/appveyor/build/SimonCropp/NodaTime-Bogus)](https://ci.appveyor.com/project/SimonCropp/NodaTime-Bogus)
+[![Build status](https://github.com/SimonCropp/NodaTime.Bogus/actions/workflows/build.yml/badge.svg)](https://github.com/SimonCropp/NodaTime.Bogus/actions/workflows/build.yml)
 [![NuGet Status](https://img.shields.io/nuget/v/NodaTime.Bogus.svg)](https://www.nuget.org/packages/NodaTime.Bogus/)
 
 Add support for [NodaTime](https://nodatime.org/) to [Bogus](https://github.com/bchavez/Bogus).
