@@ -47,11 +47,9 @@ public class LocalTimeDataSet(Func<DateTimeZone> dateTimeZoneBuilder) :
     /// Get a date and time that will happen soon.
     /// </summary>
     /// <param name="minutes">Maximum minutes to go ahead.</param>
-    public LocalTime Soon(int minutes = 1)
-    {
-        var now = Now();
-        return Between(now, now.PlusMinutes(minutes));
-    }
+    public LocalTime Soon(int minutes = 1) =>
+        // Between would swap the bounds when now + minutes wraps past midnight
+        Future(minutes);
 
     /// <summary>
     /// Get a date in the future between <paramref name="reference"/> and years forward of that date.

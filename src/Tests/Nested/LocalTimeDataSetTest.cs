@@ -50,10 +50,10 @@
     [Fact]
     public void Recently()
     {
+        var before = Now();
         var localTime = dataSet.Recent();
-        var start = Now();
-        Assert.True(localTime <= start);
-        Assert.True(localTime >= start.PlusMinutes(-1));
+        var after = Now();
+        Assert.True(TicksBetween(localTime, after) <= TicksBetween(before, after) + TimeSpan.TicksPerMinute);
     }
 
     [Fact]
@@ -74,10 +74,18 @@
     [Fact]
     public void Time_that_will_happen_soon()
     {
-        var start = Now();
+        var before = Now();
         var result = dataSet.Soon(2);
-        Assert.True(result > start);
-        Assert.True(result < start.PlusMinutes(2));
+        var after = Now();
+        Assert.True(TicksBetween(before, result) <= TicksBetween(before, after) + TimeSpan.TicksPerMinute * 2);
+    }
+
+    [Fact]
+    public void Future_wraps_past_midnight()
+    {
+        var starting = new LocalTime(23, 59, 30);
+        var result = dataSet.Future(reference: starting, minutesToGoForward: 2);
+        Assert.True(TicksBetween(starting, result) <= TimeSpan.TicksPerMinute * 2);
     }
 
     static LocalTime Now()
@@ -85,4 +93,8 @@
         var currentInstant = SystemClock.Instance.GetCurrentInstant();
         return currentInstant.InUtc().TimeOfDay;
     }
+
+    // ticks from start forward to end, wrapping past midnight
+    static long TicksBetween(LocalTime start, LocalTime end) =>
+        (end.TickOfDay - start.TickOfDay + TimeSpan.TicksPerDay) % TimeSpan.TicksPerDay;
 }
